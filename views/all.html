@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/public/lib/foundation/js/jquery.js"></script>
+    <script src="/public/lib/foundation/js/foundation/foundation.reveal.js"></script>
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap-3.0.0/assets/js/html5shiv.js"></script>
+      <script src="bootstrap-3.0.0/assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <% for (var i=0; i<list.length; i++) { %>
+        <form method="post" id="send-message">
+            <input type="hidden" id="id" name="id" value="<%=list[i]._id%>"></input>
+            <button type="submit" id="send-button"><%=list[i].userName%></button>
+        </form>
+    <% } %>
+
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap-3.0.0/assets/js/html5shiv.js"></script>
+      <script src="bootstrap-3.0.0/assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <%if (message!="") {%>
+        <div class="row">
+            <div data-alert class="alert-box">
+                <%=message%>
+                <a href="#" class="close">&times;</a> 
+            </div>
+        </div>
+    <%}%>
+
+    <div class="row">
+        <div class="header-text">
+            <h1>Login</h>
+        </div>
+    </div>
+    <div id="Login">
+        <form method="post">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>
+                        User
+                    </label>
+                    <input type="text" name="user[name]" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label for="password">
+                        Password
+                    </label>
+                    <input id="password" type="password" required="" name="user[password]" placeholder="" data-invalid=""></input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 small-2 columns header-button">
+                  <button class="btn btn-default header">Send</button>
+                </div>
+                <div class="large-4 small-7 columns header-button">
+                  <button type="button" class="btn-default btn" onclick="window.location.href='/signup'">Signup</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).foundation();
+    </script>
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+</body>
+</html>

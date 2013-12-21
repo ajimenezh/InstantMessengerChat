@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passport-Local Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap-3.0.0/assets/js/html5shiv.js"></script>
+      <script src="bootstrap-3.0.0/assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <%if (message!="") {%>
+        <div class="row">
+            <div data-alert class="alert-box">
+                <%=message%>
+                <a href="#" class="close">&times;</a> 
+            </div>
+        </div>
+    <%}%>
+
+    <div class="row">
+        <div class="header-text">
+            <h1>Register</h>
+        </div>
+    </div>
+    <form method="post" data-abide novalidate="novalidate">
+        <div class="row">
+            <div class="large-6 columns">
+              <label>User</label>
+              <input type="text" name="user[name]" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label for="password">
+                    Password 
+                    <small>
+                    required
+                    </small>
+                </label>
+                <input id="password" type="password" required="" name="user[password]" placeholder="" data-invalid=""></input>
+                <small class="error">
+                    The password needs to have at least 8 characters, 1 capital letter and 1 number.
+                </small>
+            </div>
+            <div class="large-12 columns">
+                <label for="confirmPassword">
+                    Confirm password
+                    <small>
+                    required
+                    </small>
+                </label>
+                <input id="confirmPassword" type="password" data-equalto="password" required="" name="user[confirmPassword]" placeholder=""></input>
+                <small class="error" data-error-message="">
+                    The passwords are different.
+                </small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 columns">
+                <label for="email">
+                    Email
+                </label>
+                <input id="email" type="email" placeholder="" name="user[email]"></input>
+                <small class="error">
+                    Invalid email.
+                </small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 small-6 columns">
+              <button class="btn bt-default header-button">Send</button>
+            </div>
+            <div class="large-6 small-6 columns">
+                <a href="/login" class="button">Back</a>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

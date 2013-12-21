@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/public/lib/foundation/js/jquery.js"></script>
+    <script src="/public/lib/foundation/js/foundation/foundation.reveal.js"></script>
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap-3.0.0/assets/js/html5shiv.js"></script>
+      <script src="bootstrap-3.0.0/assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <div>
+        <form id="send-message" class="footer">
+            <div class="row">
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <input type="text" id="message"></input>
+                  <input type="hidden" id="userName" value="<%=user.name%>"></input>
+                  <input type="hidden" id="userId" value="<%=user.id%>"></input>
+                  <input type="hidden" id="chatId" value="<%=allchats.chatHash%>"></input>
+                </div>
+                <div class="small-2 columns">
+                  <button type="submit" class="button postfix">Submit</button>
+                </div>
+              </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="newchats"></div>
+    <div id="chats">
+        <% for(var i=0; i<allchats.chatMessages.length; i++) {%>
+        <div class="row">
+            <%=allchats.chatMessages[allchats.chatMessages.length - 1 - i].name%>: <%=allchats.chatMessages[allchats.chatMessages.length - 1 - i].message%>
+        </div>
+        <% } %>
+    </div>
+
+    <script>
+        var socket = io.connect();
+        $('#send-message').submit(function (e) {
+
+            e.preventDefault();
+
+            socket.emit('send message', {
+                message: $('#message').val(),
+                name: $('#userName').val(),
+                id: $('#userId').val(),
+                chatHash: $('#chatId').val()
+            });
+
+            $('#message').val('');
+
+        });
+        socket.on('new message', function (data) {
+            $('#newchats').prepend('<div>' + data.name + ': ' + data.message + '</div>');
+        });
+    </script>
+
+    <link href="/public/lib/foundation/css/foundation.css" rel="stylesheet">
+    <script src="/public/lib/foundation/js/modernizr.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/lib/foundation/js/foundation.min.js"></script>
+</body>
+</html>
